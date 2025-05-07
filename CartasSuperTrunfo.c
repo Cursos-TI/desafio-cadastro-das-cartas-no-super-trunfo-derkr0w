@@ -17,7 +17,13 @@ int main() {
     float areaA, areaB;
     float pibA, pibB;
     float densA, densB;
-    float pibcaptaA, pibcaptaB;
+    float pibCaptaA, pibCaptaB;
+    float superA, superB;
+    float densInvA;
+    float densInvB;
+    float totalA;
+    float totalB;
+    int resultado;
 
     //[CARTA 1]//
 
@@ -51,7 +57,9 @@ int main() {
     pibA *= 1000000;  // valor digitado será considerado em milhões
 
     densA = (float) populacaoA / areaA;
-    pibcaptaA = (float) pibA / populacaoA;
+    pibCaptaA = (float) pibA / populacaoA;
+    densInvA = (float) 1 / densA;
+    superA = (float) populacaoA + areaA + pibA + pibCaptaA + densInvA + pontA;
 
     printf("CARTA 1 REGISTRADA COM SUCESSO!\n\n");
 
@@ -87,9 +95,17 @@ int main() {
     pibB *= 1000000;
 
     densB = (float) populacaoB / areaB;
-    pibcaptaB = (float) pibB / populacaoB;
+    pibCaptaB = (float) pibB / populacaoB;
+    densInvB = (float) 1 / densB;
+    superB = (float) populacaoB + areaB + pibB + pibCaptaB + densInvB + pontB;
 
     printf("CARTA 2 REGISTRADA COM SUCESSO!\n");
+
+    if (superA > superB) {
+        resultado = 1;
+    } else {
+        resultado = 0;
+    }
 
     //[APRESENTAÇÃO DE DADOS]//
 
@@ -97,13 +113,15 @@ int main() {
     printf("Estado: %s\nCódigo: %s\n", estadoA, codigoA);
     printf("Cidade: %s\nPopulação: %d\n", cidadeA, populacaoA);
     printf("Área: %.1f km²\nPIB: %.1f bilhões\nPontos Turísticos: %d\n", areaA, pibA / 1000000, pontA);
-    printf("Densidade Populacional: %.1f hab./km²\nPIB per capita: %.1f\n\n", densA, pibcaptaA);
+    printf("Densidade Populacional: %.1f hab./km²\nPIB per capita: %.1f\n\n", densA, pibCaptaA);
 
     printf("[CARTA 2]\n");
     printf("Estado: %s\nCódigo: %s\n", estadoB, codigoB);
     printf("Cidade: %s\nPopulação: %d\n", cidadeB, populacaoB);
     printf("Área: %.1f km²\nPIB: %.1f bilhões\nPontos Turísticos: %d\n", areaB, pibB / 1000000, pontB);
-    printf("Densidade Populacional: %.1f hab./km²\nPIB per capita: %.1f\n", densB, pibcaptaB);
+    printf("Densidade Populacional: %.1f hab./km²\nPIB per capita: %.1f\n", densB, pibCaptaB);
+
+    printf("\nO resultado é: %d", resultado);
 
     return 0;
 }
